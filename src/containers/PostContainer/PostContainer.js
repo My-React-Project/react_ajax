@@ -21,6 +21,16 @@ class PostContainer extends Component {
         this.fetchPostInfo(1);
     }
 
+    handleNavigateClick = (type) => {
+        const postId = this.state.postId;
+
+        if(type === 'NEXT') {
+            this.fetchPostInfo(postId+1);
+        } else {
+            this.fetchPostInfo(postId-1);
+        }
+    }
+
     /*
     async function fetchPostInfo(postId) {
         const post = await service.getPost(postId);
@@ -65,7 +75,8 @@ class PostContainer extends Component {
             <PostWrapper>
                 <Navigate
                     postId={postId}
-                    disabled={fetching}/>
+                    disabled={fetching}
+                    onClick={this.handleNavigateClick}/>
                 <Post
                     title={post.title}
                     body={post.body}
